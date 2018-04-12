@@ -124,29 +124,29 @@ public class Blog implements Serializable {
             "}";
     }
 
-@LastModifiedDate
-@Column(name = "last_modified_date")
-@JsonIgnore
-private Instant lastModifiedDate = Instant.now();
+    @LastModifiedDate
+    @Column(name = "last_modified_date")
+    @JsonIgnore
+    private Instant lastModifiedDate = Instant.now();
 
-public Instant getLastModifiedDate() {
-    return lastModifiedDate;
-}
+    public Instant getLastModifiedDate() {
+        return lastModifiedDate;
+    }
 
-public void setLastModifiedDate(Instant lastModifiedDate) {
-    this.lastModifiedDate = lastModifiedDate;
-}
+    public void setLastModifiedDate(Instant lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
 
-@CreatedDate
-@Column(name = "created_date", nullable = false)
-@JsonIgnore
-private Instant createdDate = Instant.now();
+    @CreatedDate
+    @Column(name = "created_date", nullable = false)
+    @JsonIgnore
+    private Instant createdDate = Instant.now();
 
-public Instant getCreatedDate() {
-    return createdDate;
-}
+    public Instant getCreatedDate() {
+        return createdDate;
+    }
 
-public void setCreatedDate(Instant createdDate) {
-    this.createdDate = createdDate;
-}
+    public void setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
+    }
 }
