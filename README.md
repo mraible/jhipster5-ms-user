@@ -1,4 +1,4 @@
-## JHipster User for Microservices
+# JHipster User for Microservices
 
 This repo demonstrates an issue I've had implementing [`User` relationships for microservices](https://github.com/jhipster/generator-jhipster/pull/7424) with JHipster.
 
@@ -41,4 +41,8 @@ cd store && npm install
 ./mvnw
 ```
 
+## Reproduce the Issue
 
+To reproduce the issue, navigate to http://localhost:8080 and log in as admin/admin. Create a new blog and assign it to the "admin" user. In an incognito window, log in as user/user and create a new blog, assigning it to the "user" user.
+
+As the admin user, edit the admin's blog and try to assign it to "user". You will get an error and the `Before any operation {}` log message will not fire from `UserEntityListener`.
