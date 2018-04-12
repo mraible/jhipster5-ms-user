@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.okta.developer.blog",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.0.0-beta.0",
+    "baseName": "blog",
+    "reactive": false,
+    "packageName": "com.okta.developer.blog",
+    "packageFolder": "com/okta/developer/blog",
+    "serverPort": "8081",
+    "authenticationType": "oauth2",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "f969302d5ff8be6bee9054d86d46a93abea13185",
+    "enableTranslation": true,
+    "applicationType": "microservice",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "clientPackageManager": "yarn",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

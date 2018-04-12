@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.okta.developer.store",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.0.0-beta.0",
+    "baseName": "store",
+    "reactive": false,
+    "packageName": "com.okta.developer.store",
+    "packageFolder": "com/okta/developer/store",
+    "serverPort": "8082",
+    "authenticationType": "oauth2",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "306d9973565afce5eeb6aac69df44d3fe6d9f8b6",
+    "enableTranslation": true,
+    "applicationType": "microservice",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "clientPackageManager": "yarn",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
