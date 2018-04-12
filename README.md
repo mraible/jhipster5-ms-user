@@ -10,7 +10,6 @@ To start all the apps in this project, run the following commands in separate te
 
 ```
 docker-compose -f gateway/src/main/docker/keycloak.yml up
-docker-compose -f store/src/main/docker/mongodb.yml up
 ```
 
 **JHipster Registry**
@@ -35,14 +34,8 @@ cd blog && npm install
 ./mvnw
 ```
 
-**Store**
-```
-cd store && npm install
-./mvnw
-```
-
 ## Reproduce the Issue
 
-To reproduce the issue, navigate to http://localhost:8080 and log in as admin/admin. Create a new blog and assign it to the "admin" user. In an incognito window, log in as user/user and create a new blog, assigning it to the "user" user.
+To reproduce the issue, navigate to http://localhost:8080 and log in as admin/admin. Create a new blog and assign it to the "admin" user. In an incognito window, log in as user/user so there's a reference stored in the Gateway app.
 
 As the admin user, edit the admin's blog and try to assign it to "user". You will get an error and the `Before any operation {}` log message will not fire from `UserEntityListener`.
