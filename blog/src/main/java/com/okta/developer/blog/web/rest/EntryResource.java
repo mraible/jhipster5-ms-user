@@ -31,7 +31,6 @@ import java.util.Optional;
 public class EntryResource {
 
     private final Logger log = LoggerFactory.getLogger(EntryResource.class);
-
     private static final String ENTITY_NAME = "entry";
 
     private final EntryRepository entryRepository;

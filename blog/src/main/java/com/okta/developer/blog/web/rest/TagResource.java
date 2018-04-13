@@ -31,7 +31,6 @@ import java.util.Optional;
 public class TagResource {
 
     private final Logger log = LoggerFactory.getLogger(TagResource.class);
-
     private static final String ENTITY_NAME = "tag";
 
     private final TagRepository tagRepository;

@@ -5,10 +5,10 @@ import { GatewayAppModule } from './app.module';
 ProdConfig();
 
 if (module['hot']) {
-  module['hot'].accept();
+    module['hot'].accept();
 }
 
 platformBrowserDynamic()
-  .bootstrapModule(GatewayAppModule)
-  .then(success => console.log(`Application started`))
-  .catch(err => console.error(err));
+    .bootstrapModule(GatewayAppModule)
+    .then(success => console.log(`Application started`))
+    .catch(err => console.error(err));

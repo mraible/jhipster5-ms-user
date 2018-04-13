@@ -1,19 +1,13 @@
 package com.okta.developer.blog.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.envers.Audited;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Objects;
 
 /**
@@ -22,7 +16,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "blog")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@EntityListeners(UserEntityListener.class)
 public class Blog implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -122,31 +115,5 @@ public class Blog implements Serializable {
             ", name='" + getName() + "'" +
             ", handle='" + getHandle() + "'" +
             "}";
-    }
-
-    @LastModifiedDate
-    @Column(name = "last_modified_date")
-    @JsonIgnore
-    private Instant lastModifiedDate = Instant.now();
-
-    public Instant getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Instant lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    @CreatedDate
-    @Column(name = "created_date", nullable = false)
-    @JsonIgnore
-    private Instant createdDate = Instant.now();
-
-    public Instant getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Instant createdDate) {
-        this.createdDate = createdDate;
     }
 }
