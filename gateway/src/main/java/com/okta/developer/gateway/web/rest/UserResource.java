@@ -2,7 +2,6 @@ package com.okta.developer.gateway.web.rest;
 
 import com.okta.developer.gateway.config.Constants;
 import com.codahale.metrics.annotation.Timed;
-import com.okta.developer.gateway.repository.UserRepository;
 import com.okta.developer.gateway.security.AuthoritiesConstants;
 import com.okta.developer.gateway.service.UserService;
 import com.okta.developer.gateway.service.dto.UserDTO;
@@ -51,13 +50,9 @@ public class UserResource {
 
     private final Logger log = LoggerFactory.getLogger(UserResource.class);
 
-    private final UserRepository userRepository;
-
     private final UserService userService;
 
-    public UserResource(UserRepository userRepository, UserService userService) {
-
-        this.userRepository = userRepository;
+    public UserResource(UserService userService) {
         this.userService = userService;
     }
 

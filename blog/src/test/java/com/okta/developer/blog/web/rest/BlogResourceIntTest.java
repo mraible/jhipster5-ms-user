@@ -3,6 +3,7 @@ package com.okta.developer.blog.web.rest;
 import com.okta.developer.blog.BlogApp;
 
 import com.okta.developer.blog.domain.Blog;
+import com.okta.developer.blog.repository.UserRepository;
 import com.okta.developer.blog.repository.BlogRepository;
 import com.okta.developer.blog.web.rest.errors.ExceptionTranslator;
 
@@ -49,6 +50,9 @@ public class BlogResourceIntTest {
     @Autowired
     private BlogRepository blogRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
 
 
     @Autowired
@@ -70,7 +74,7 @@ public class BlogResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final BlogResource blogResource = new BlogResource(blogRepository);
+        final BlogResource blogResource = new BlogResource(blogRepository, userRepository);
         this.restBlogMockMvc = MockMvcBuilders.standaloneSetup(blogResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
