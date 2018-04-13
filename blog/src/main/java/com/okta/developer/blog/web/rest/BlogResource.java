@@ -27,6 +27,7 @@ import java.util.Optional;
 public class BlogResource {
 
     private final Logger log = LoggerFactory.getLogger(BlogResource.class);
+
     private static final String ENTITY_NAME = "blog";
 
     private final BlogRepository blogRepository;

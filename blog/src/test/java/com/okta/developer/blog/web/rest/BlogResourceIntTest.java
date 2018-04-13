@@ -54,7 +54,6 @@ public class BlogResourceIntTest {
     private UserRepository userRepository;
 
 
-
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
