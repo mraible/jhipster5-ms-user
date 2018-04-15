@@ -20,7 +20,7 @@ import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class MicroserviceSecurityConfiguration extends ResourceServerConfigurerAdapter {
 
-    private static final String OAUTH2_PRINCIPAL_ATTRIBUTE = "preferred_username";
+    private static final String OAUTH2_PRINCIPAL_ATTRIBUTE = "username";
 
     private static final String OAUTH2_AUTHORITIES_ATTRIBUTE = "roles";
 

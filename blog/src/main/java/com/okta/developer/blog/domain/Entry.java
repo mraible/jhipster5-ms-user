@@ -47,8 +47,8 @@ public class Entry implements Serializable {
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "entry_tag",
-               joinColumns = @JoinColumn(name="entries_id", referencedColumnName="id"),
-               inverseJoinColumns = @JoinColumn(name="tags_id", referencedColumnName="id"))
+               joinColumns = @JoinColumn(name = "entries_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "tags_id", referencedColumnName = "id"))
     private Set<Tag> tags = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

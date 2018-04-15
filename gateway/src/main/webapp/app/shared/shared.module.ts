@@ -5,10 +5,10 @@ import { NgbDateMomentAdapter } from './util/datepicker-adapter';
 import { GatewaySharedLibsModule, GatewaySharedCommonModule, HasAnyAuthorityDirective } from './';
 
 @NgModule({
-  imports: [GatewaySharedLibsModule, GatewaySharedCommonModule],
-  declarations: [HasAnyAuthorityDirective],
-  providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
-  exports: [GatewaySharedCommonModule, HasAnyAuthorityDirective],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    imports: [GatewaySharedLibsModule, GatewaySharedCommonModule],
+    declarations: [HasAnyAuthorityDirective],
+    providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
+    exports: [GatewaySharedCommonModule, HasAnyAuthorityDirective],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GatewaySharedModule {}

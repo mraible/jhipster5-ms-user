@@ -53,7 +53,7 @@ public class EntryResource {
         log.debug("REST request to save Entry : {}", entry);
         if (entry.getId() != null) {
             throw new BadRequestAlertException("A new entry cannot already have an ID", ENTITY_NAME, "idexists");
-        }
+        }        
         Entry result = entryRepository.save(entry);
         return ResponseEntity.created(new URI("/api/entries/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -75,7 +75,7 @@ public class EntryResource {
         log.debug("REST request to update Entry : {}", entry);
         if (entry.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
+        }        
         Entry result = entryRepository.save(entry);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, entry.getId().toString()))

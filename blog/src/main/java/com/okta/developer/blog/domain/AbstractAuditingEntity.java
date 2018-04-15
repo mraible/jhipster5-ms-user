@@ -19,6 +19,7 @@ import javax.persistence.MappedSuperclass;
  * last modified by date.
  */
 @MappedSuperclass
+@Audited
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractAuditingEntity implements Serializable {
 

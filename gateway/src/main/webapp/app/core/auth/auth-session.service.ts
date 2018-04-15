@@ -6,12 +6,12 @@ import { SERVER_API_URL } from 'app/app.constants';
 
 @Injectable()
 export class AuthServerProvider {
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
-  logout(): Observable<any> {
-    // logout from the server
-    return this.http.post(SERVER_API_URL + 'api/logout', {}, { observe: 'response' }).map((response: HttpResponse<any>) => {
-      return response;
-    });
-  }
+    logout(): Observable<any> {
+        // logout from the server
+        return this.http.post(SERVER_API_URL + 'api/logout', {}, { observe: 'response' }).map((response: HttpResponse<any>) => {
+            return response;
+        });
+    }
 }

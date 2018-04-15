@@ -18,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,11 +27,21 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
+import springfox.documentation.service.OAuth;
 
 /**
  * Test class for the AccountResource REST controller.
@@ -85,44 +96,44 @@ public class AccountResourceIntTest{
             .andExpect(content().string("test"));
     }
 
-    @Test
-    @Transactional
-    public void testGetExistingAccount() throws Exception {
-        Set<Authority> authorities = new HashSet<>();
-        Authority authority = new Authority();
-        authority.setName(AuthoritiesConstants.ADMIN);
-        authorities.add(authority);
+@Test
+@Transactional
+public void testGetExistingAccount() throws Exception {
+    Set<Authority> authorities = new HashSet<>();
+    Authority authority = new Authority();
+    authority.setName(AuthoritiesConstants.ADMIN);
+    authorities.add(authority);
 
-        User user = new User();
-        user.setId(RandomStringUtils.randomAlphanumeric(50));
-        user.setLogin("test");
-        user.setFirstName("john");
-        user.setLastName("doe");
-        user.setEmail("john.doe@jhipster.com");
-        user.setImageUrl("http://placehold.it/50x50");
-        user.setLangKey("en");
-        user.setAuthorities(authorities);
-        userRepository.save(user);
+    User user = new User();
+    user.setId(RandomStringUtils.randomAlphanumeric(50));
+    user.setLogin("test");
+    user.setFirstName("john");
+    user.setLastName("doe");
+    user.setEmail("john.doe@jhipster.com");
+    user.setImageUrl("http://placehold.it/50x50");
+    user.setLangKey("en");
+    user.setAuthorities(authorities);
+    userRepository.save(user);
 
-        // create security-aware mockMvc
-        restUserMockMvc = MockMvcBuilders
-            .webAppContextSetup(context)
-            .apply(springSecurity())
-            .build();
+    // create security-aware mockMvc
+    restUserMockMvc = MockMvcBuilders
+        .webAppContextSetup(context)
+        .apply(springSecurity())
+        .build();
 
-        restUserMockMvc.perform(get("/api/account")
-            .with(user(user.getLogin()).roles("ADMIN"))
-            .accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.login").value("test"))
-            .andExpect(jsonPath("$.firstName").value("john"))
-            .andExpect(jsonPath("$.lastName").value("doe"))
-            .andExpect(jsonPath("$.email").value("john.doe@jhipster.com"))
-            .andExpect(jsonPath("$.imageUrl").value("http://placehold.it/50x50"))
-            .andExpect(jsonPath("$.langKey").value("en"))
-            .andExpect(jsonPath("$.authorities").value(AuthoritiesConstants.ADMIN));
-    }
+    restUserMockMvc.perform(get("/api/account")
+        .with(user(user.getLogin()).roles("ADMIN"))
+        .accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+        .andExpect(jsonPath("$.login").value("test"))
+        .andExpect(jsonPath("$.firstName").value("john"))
+        .andExpect(jsonPath("$.lastName").value("doe"))
+        .andExpect(jsonPath("$.email").value("john.doe@jhipster.com"))
+        .andExpect(jsonPath("$.imageUrl").value("http://placehold.it/50x50"))
+        .andExpect(jsonPath("$.langKey").value("en"))
+        .andExpect(jsonPath("$.authorities").value(AuthoritiesConstants.ADMIN));
+}
 
     @Test
     public void testGetUnknownAccount() throws Exception {

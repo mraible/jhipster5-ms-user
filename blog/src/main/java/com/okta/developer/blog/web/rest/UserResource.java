@@ -2,7 +2,6 @@ package com.okta.developer.blog.web.rest;
 
 import com.okta.developer.blog.config.Constants;
 import com.codahale.metrics.annotation.Timed;
-import com.okta.developer.blog.repository.UserRepository;
 import com.okta.developer.blog.security.AuthoritiesConstants;
 import com.okta.developer.blog.service.UserService;
 import com.okta.developer.blog.service.dto.UserDTO;
@@ -54,6 +53,7 @@ public class UserResource {
     private final UserService userService;
 
     public UserResource(UserService userService) {
+
         this.userService = userService;
     }
 

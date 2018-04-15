@@ -47,7 +47,6 @@ public class TagResourceIntTest {
     private TagRepository tagRepository;
 
 
-
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 

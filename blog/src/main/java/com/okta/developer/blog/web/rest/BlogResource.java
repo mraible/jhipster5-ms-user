@@ -3,20 +3,19 @@ package com.okta.developer.blog.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.okta.developer.blog.domain.Blog;
 import com.okta.developer.blog.repository.BlogRepository;
+import com.okta.developer.blog.repository.UserRepository;
 import com.okta.developer.blog.web.rest.errors.BadRequestAlertException;
 import com.okta.developer.blog.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +32,11 @@ public class BlogResource {
 
     private final BlogRepository blogRepository;
 
-    public BlogResource(BlogRepository blogRepository) {
+    private final UserRepository userRepository;
+
+    public BlogResource(BlogRepository blogRepository, UserRepository userRepository) {
         this.blogRepository = blogRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -51,6 +53,10 @@ public class BlogResource {
         if (blog.getId() != null) {
             throw new BadRequestAlertException("A new blog cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if (blog.getUser() != null) {
+            // Save user in case it's new and only exists in gateway
+            userRepository.save(blog.getUser());
+        }        
         Blog result = blogRepository.save(blog);
         return ResponseEntity.created(new URI("/api/blogs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -73,7 +79,10 @@ public class BlogResource {
         if (blog.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        blog.setLastModifiedDate(Instant.now());
+        if (blog.getUser() != null) {
+            // Save user in case it's new and only exists in gateway
+            userRepository.save(blog.getUser());
+        }        
         Blog result = blogRepository.save(blog);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, blog.getId().toString()))

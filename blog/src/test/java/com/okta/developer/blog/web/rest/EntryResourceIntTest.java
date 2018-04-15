@@ -60,7 +60,6 @@ public class EntryResourceIntTest {
 
     @Autowired
     private EntryRepository entryRepository;
-
     @Mock
     private EntryRepository entryRepositoryMock;
 
